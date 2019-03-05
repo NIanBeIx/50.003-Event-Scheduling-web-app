@@ -18,6 +18,5 @@ var i=new SessionDB("week1class150.001",
 "50.001",50,"cohort",1,"2.505",1,1,"8:30",
 "9:30",["cohort1","cohort2","cohort3"]);
 
-//console.log(s1.numberOfStudentsPerSession);
 */
 
