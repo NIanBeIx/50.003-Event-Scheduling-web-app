@@ -16,6 +16,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { GeneratescheduleComponent } from './generateschedule/generateschedule.component';
 
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
+import { MatRadioModule } from '@angular/material';
 
 
 @NgModule({
@@ -24,7 +27,9 @@ import { FormsModule } from '@angular/forms';
     PollComponent,
     WelcomeComponent,
     MessagesComponent,
-    GeneratescheduleComponent
+    GeneratescheduleComponent,
+    LoginComponent,
+    UserComponent
 
     
   ],
@@ -34,7 +39,8 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    MatRadioModule
 
   ],
   providers: [DataService],

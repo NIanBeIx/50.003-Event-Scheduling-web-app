@@ -1,6 +1,8 @@
 <mat-sidenav-container>
   <mat-sidenav  #sidenav role="navigation">
     
+    <!-- Only Course Coordinator can access generate page -->
+    <!-- Only INstructor can access poll page-->
    <mat-nav-list>
 
     
@@ -9,11 +11,13 @@
       <mat-icon class="icon">home</mat-icon>  
       <span class="label">Home</span>
     </a>
+    
     <a mat-list-item
       routerLink="/Messages">
       <mat-icon class="icon">email</mat-icon>
       <span class="label">Messages</span>
     </a>
+  
     <a mat-list-item
       routerLink="/Generateschedule">
       <mat-icon class="icon">schedule</mat-icon>
@@ -51,6 +55,7 @@
                     <span class="label">Home</span>
                 </a>
               </li>
+              
             <li>
                 <a
                   routerLink="Messages">
@@ -58,6 +63,7 @@
                   <span  class="label">Messages</span>
                  </a>
             </li>
+          
             <li>
               <a
                 routerLink="/Generateschedule">

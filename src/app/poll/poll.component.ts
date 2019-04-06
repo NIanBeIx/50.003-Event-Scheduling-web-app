@@ -10,6 +10,12 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./poll.component.css']
 })
 export class PollComponent {
+  /**pollModel refers to the selection of the poll
+   * 1 = Schedule 1
+   * 2 = Schedule 2
+   * 3 = Schedule 3
+   */
+  pollModel = 0;
   constructor(private dataService: DataService) {
   }
 

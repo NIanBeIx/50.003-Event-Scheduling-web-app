@@ -1,0 +1,34 @@
+<form>
+    <h1>Customise your Mod:</h1>
+    <mat-form-field>
+
+              <!-- need to put name of mod-->  
+        
+        <h5>Number of Periods:</h5>
+        <select matNativecontrol required>
+            <select [(value)]="periodNumber"></select>
+            <option *ngFor = "let period of periods" [value]="period.value">
+                {{period.viewValue}}
+            </option>
+        </select>  
+        <p>You selected: {{periodNumber}}</p>
+        
+        <br>
+
+        <h5>Venue:</h5>
+        <select matNativecontrol required>
+            <select [(value)]="venueNumber"></select>
+            <option *ngFor = "let venue of venues" [value]="venue.value">
+                {{venue.viewValue}}
+            </option>
+        </select>  
+
+        <br>
+        <p>You selected: {{periodNumber}}</p>
+
+        <button>Generate</button>
+
+        
+    </mat-form-field>
+
+</form>

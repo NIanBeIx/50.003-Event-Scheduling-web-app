@@ -14,7 +14,7 @@
                       <mat-cell *matCellDef="let element"> {{element.date_posted  | date: 'd/M/y'}} </mat-cell>
                     </ng-container>
                       <ng-container matColumnDef="title">
-                        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>.
+                        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
                         
                         <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
                       </ng-container>
@@ -32,7 +32,21 @@
         </div>
       </div>
     </div>
+
+
+    <!-- below are the widgets used to vote-->
+
     <br>
+    <mat-radio-group labelPosition="before"[(ngModel)]="pollModel">
+        <div fxLayout="row" fxLayoutAlign="center center" class="content">
+          <mat-radio-button value="1">Schedule 1</mat-radio-button>
+          <mat-radio-button value="2">Schedule 2</mat-radio-button>
+          <mat-radio-button value="3">Schedule 3</mat-radio-button>
+        </div>
+    </mat-radio-group>
+
+    <div>{{pollModel}}</div>
+      <br>  
       <div class="container">
           <div class="container">
             <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
@@ -41,7 +55,7 @@
                         <mat-icon>poll</mat-icon> Vote
                     </button>
                 </div>
+            </div>
           </div>
-      </div>
-      <br>
+    <br>
   </div>
