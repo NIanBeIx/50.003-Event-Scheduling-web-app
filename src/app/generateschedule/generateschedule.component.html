@@ -1,34 +1,56 @@
-<form>
-    <h1>Customise your Mod:</h1>
-    <mat-form-field>
-
-              <!-- need to put name of mod-->  
-        
-        <h5>Number of Periods:</h5>
-        <select matNativecontrol required>
-            <select [(value)]="periodNumber"></select>
-            <option *ngFor = "let period of periods" [value]="period.value">
-                {{period.viewValue}}
-            </option>
-        </select>  
-        <p>You selected: {{periodNumber}}</p>
-        
-        <br>
-
-        <h5>Venue:</h5>
-        <select matNativecontrol required>
-            <select [(value)]="venueNumber"></select>
-            <option *ngFor = "let venue of venues" [value]="venue.value">
-                {{venue.viewValue}}
-            </option>
-        </select>  
-
-        <br>
-        <p>You selected: {{periodNumber}}</p>
-
-        <button>Generate</button>
-
-        
+<h2>
+    Generate New Mod
+</h2>
+<br>
+<br>
+<form class ="example-form">
+    <h3>
+        Insert Name of New Course:
+    </h3>
+    <br>
+    <h5>
+        Insert the Full Name of Module to be Generated.
+    </h5>
+    <mat-form-field class = "example-full-width">
+        <textarea matInput placeholder = "Name of New Course" ></textarea>
     </mat-form-field>
-
 </form>
+<br>
+<form class ="example-form">
+
+        <h4>
+            Insert Full Name of Instructors:
+        </h4>
+        <br>
+        <h5>
+            Put the full names of desired instructors separated by a comma. Eg: Will SMith, Tan Ah Beng, Muhammad Ali
+        </h5>
+        <mat-form-field class = "example-full-width">
+            
+            <textarea matInput placeholder = "Name of Instructors" ></textarea>
+    
+        </mat-form-field>
+    </form>
+    <br>
+    <form class ="example-form">
+            <h4>
+                Insert Number of Periods per Lecture:
+            </h4>
+            <br>
+            <h5>
+                Put the number of periods per lecture separated by a comma. For example, if there were 5 lectures in a week:                
+            </h5>
+            <h5>
+                eg: 5, 2, 1, 3, 4
+            </h5>
+            <mat-form-field class = "example-full-width">
+                <textarea matInput placeholder = "Number of Periods per Lecture" ></textarea>
+        
+            </mat-form-field>
+        </form>
+        <br>
+
+        <div class="generateschedule-button">
+            <a mat-raised-button routerLink=".">Generate</a>
+        </div>
+        <br>
