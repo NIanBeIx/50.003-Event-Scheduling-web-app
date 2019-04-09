@@ -1,34 +1,73 @@
-<form>
-    <h1>Customise your Mod:</h1>
-    <mat-form-field>
+<h2>
+    Generate New Mod
+</h2>
+<br>
+<br>
+<form (ngSubmit)="onSubmit(courseForm)"  #courseForm="ngForm">
+    <h3>
+        Insert Name of New Course:
+    </h3>
+    <br>
+    <h5>
+        Insert the Course ID to be Generated.
+    </h5>
 
-              <!-- need to put name of mod-->  
-        
-        <h5>Number of Periods:</h5>
-        <select matNativecontrol required>
-            <select [(value)]="periodNumber"></select>
-            <option *ngFor = "let period of periods" [value]="period.value">
-                {{period.viewValue}}
-            </option>
-        </select>  
-        <p>You selected: {{periodNumber}}</p>
-        
-        <br>
+    <div class="form-group">
+        <label for="textarea">Course ID</label>
+        <input type="text" ngModel name="courseId" required class="form-control" >
+    </div>
+    <br>
 
-        <h5>Venue:</h5>
-        <select matNativecontrol required>
-            <select [(value)]="venueNumber"></select>
-            <option *ngFor = "let venue of venues" [value]="venue.value">
-                {{venue.viewValue}}
-            </option>
-        </select>  
+    <h5>
+        Insert the Course Name to be Generated.
+    </h5>
 
-        <br>
-        <p>You selected: {{periodNumber}}</p>
+    <div class="form-group">
+        <label for="textarea">Course Name</label>
+        <input type="text" ngModel name="courseName" required class="form-control" >
+    </div>
 
-        <button>Generate</button>
+    <h4>
+        Insert Full Name of Instructors:
+    </h4>
+    <br>
+    <h5>
+        Put the full names of desired instructors separated by a comma. Eg: Will SMith, Tan Ah Beng, Muhammad Ali
+    </h5>
 
-        
-    </mat-form-field>
+
+    <div class="form-group">
+        <label for="textarea">List of Instructors</label>
+        <input type="textarea" ngModel name="instructorList" required class="form-control" >
+    </div>
+
+    <h4>
+        Insert Number of Periods per Lecture:
+    </h4>
+    <br>
+    <h5>
+        Put the number of periods per lecture separated by a comma. For example, if there were 5 lectures in a week:                
+    </h5>
+    <h5>
+        eg: 5, 2, 1, 3, 4
+    </h5>
+
+    <div class="form-group">
+        <label for="textarea">Number of Periods per Lecture</label>
+        <input type="textarea" ngModel name="numberOfPeriod" required class="form-control" >
+    </div>
+    <br>
+
+
+    <h4>
+        Input Number Cohort Attending the Lecture:
+    </h4>
+    <div class="form-group">
+        <label for="textarea">Number of Cohort Attending</label>
+        <input type="number" ngModel name="numberOfCohort" required class="form-control" >
+    </div>
+
+
+    <button type="submit" [disabled]="!courseForm.valid" class="btn-block btn-primary">ADD</button>
 
 </form>

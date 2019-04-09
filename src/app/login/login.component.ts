@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
     ).catch(
 
     );
-}
+  }
+
+
 
   onSubmit( form: NgForm){
     const email=form.value.email;

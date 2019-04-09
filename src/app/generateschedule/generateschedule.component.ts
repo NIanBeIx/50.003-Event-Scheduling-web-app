@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import * as firebase from 'firebase';
 
 export interface Periods{
   value: string;
@@ -42,6 +44,44 @@ export class GeneratescheduleComponent implements OnInit {
  
 
   ngOnInit() {
+  }
+
+  push(content:string){
+        
+    firebase.firestore().collection('testinput').doc('2ndlayer').collection('3rdlayer').add({
+        title:'user registered',
+        value:{first:'hellohello',second:2}
+    }
+    );
+    console.log("successfully pushed");
+}
+
+  onSubmit( form: NgForm){
+    const courseID=form.value.courseId;
+    const courseName=form.value.courseName;
+    const instructors=form.value.instructorList;
+    const periods=form.value.numberOfPeriod;
+    const numberOfClass=form.value.numberOfCohort;
+
+    var instructorArray=instructors.split(",");
+    
+    var periodArray=periods.split(",");
+    var integerPeriod=new Array(periodArray.length);
+    for(var i=0;i<periodArray.length;i++){
+      integerPeriod[i]=parseInt(periodArray[i]);
+    }
+
+    var data={
+      classPeriodList:integerPeriod,
+      courseName:courseName,
+      numberOfCohorts:numberOfClass,
+      numberOfClasses:periodArray.length,
+      profList:instructorArray,
+      courseId:courseID
+    }
+
+    firebase.firestore().collection('testinput').doc(courseID).set(data);
+    console.log("successfully updated database!");
   }
 
   
