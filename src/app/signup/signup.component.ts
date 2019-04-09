@@ -3,6 +3,9 @@ import {NgForm} from '@angular/forms';
 import { AuthService } from 'app/db-service';
 import * as firebase from "firebase";
 import * as $ from "jquery";
+import { DataService } from 'app/data/data.service';
+import { Observable } from 'rxjs';
+import { Post } from 'app/Post';
 
 @Component({
   selector: 'app-signup-screen',
@@ -11,7 +14,7 @@ import * as $ from "jquery";
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -21,9 +24,9 @@ export class SignupComponent implements OnInit {
   successF(){
     $("#registerAlert").show();
     setTimeout(function(){
-      $("#registerAlert").hide()
+      window.location.href = "/login";
 
-    },5000);  }
+    },2000);  }
 
   connectionF(){
     $("#connectionAlert").show();
@@ -43,8 +46,7 @@ export class SignupComponent implements OnInit {
   
   signUp(email:string,password:string){
     firebase.auth().createUserWithEmailAndPassword(email,password).then(
-      response=>this.successF(),
-       response=>this.connectionF()
+      response=>this.successF()
     ).catch(
       error=>this.errorF()
     );
@@ -53,8 +55,16 @@ export class SignupComponent implements OnInit {
   onSubmit( form: NgForm){
     const email=form.value.email;
     const passward=form.value.password;
+    const name=form.value.name;
+    const t=form.value.type;
  
     this.signUp(email,passward);
-
+    firebase.firestore().collection('instructors').doc(name).set({
+      instructorName:name,
+      email:email,
+      passward:passward,
+      status:0,
+      type:t
+    })
   }
 }

@@ -1,25 +1,30 @@
 <div class="col-sm-8 col-sm-offset-2 ">
 
-    <h3>Login to SUTD Scheduler</h3>
-    <form (ngSubmit)="onSubmit(loginForm)"  #loginForm="ngForm">
+  <h3>Login to SUTD Scheduler</h3>
+  <form (ngSubmit)="onSubmit(loginForm)"  #loginForm="ngForm">
   
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" ngModel name="email" required class="form-control" >
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-      <input type="password" ngModel name="password" required class="form-control" >
-      </div>
-  
-      <button type="submit" [disabled]="!loginForm.valid" class="btn-block btn-primary">LOGIN</button>
-  
-    </form>
-
-    <div id="loginErrorAlert" class="alert alert-warning collapse">
-        <a herf="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>ERROR!</strong>   Wrong password or username! Please try again
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" ngModel name="email" required class="form-control" >
     </div>
   
+    <div class="form-group">
+      <label for="password">Password</label>
+    <input type="password" ngModel name="password" required class="form-control" >
+    </div>
+  
+    <button type="submit" [disabled]="!loginForm.valid" class="btn-block btn-primary">LOGIN</button>
+  
+  </form>
+
+  <div id="loginErrorAlert" class="alert alert-warning collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Error!</strong>   Wrong password or username! Please try again
   </div>
+
+  <div id="loginSucAlert" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong>   Successfully Login!
+  </div>
+
+</div>

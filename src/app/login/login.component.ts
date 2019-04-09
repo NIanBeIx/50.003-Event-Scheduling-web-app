@@ -7,8 +7,8 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'app/db-service';
-import * as $ from "jquery"
-import * as firebase from "firebase"
+import * as $ from 'jquery'
+import * as firebase from 'firebase'
 import * as angular from 'angular';
 
 
@@ -26,20 +26,36 @@ export class LoginComponent implements OnInit {
 
   }
 
-  SuccessLoginRespond(){
+  SuccessLoginRespond(email:string){
+    $('#loginSucAlert').show()
+    
+    var namebyemail=firebase.firestore().collection('instructors').where('email','==',email).onSnapshot(queryshot=>{
+      const articles=[]
+      queryshot.forEach((doc)=>{
+        console.log(doc.get('instructorName'))
+        const iname=doc.get('instructorName');
+        firebase.firestore().collection('instructors').doc(iname).update({status:1});
+      })
+    })
+    
     console.log("login successfully!");
-    $("#loginErrorAlert").show();
     setTimeout(function(){
-      var hre = "";
-      location.href = hre;
+      window.location.href = "";
     },2000);
+  }
+
+  errorR(){
+    $('#loginErrorAlert').show();
+    setTimeout(function(){
+      $('#loginErrorAlert').hide();
+    },1500);
   }
 
   login(email:string,password:string){
     firebase.auth().signInWithEmailAndPassword(email,password).then(
-        response=>console.log("Login successfully")
+      response=>this.SuccessLoginRespond(email)
     ).catch(
-
+      error=>this.errorR()
     );
   }
 
@@ -49,7 +65,8 @@ export class LoginComponent implements OnInit {
     const email=form.value.email;
     const passward=form.value.password;
 
-    this.authservice.login(email,passward);
+
+    this.login(email,passward);
   }
 
 
