@@ -1,50 +1,74 @@
 <div class="col-sm-8 col-sm-offset-2 ">
+    <br>
 
-  <h3>Sign up for SUTD Scheduler</h3>
-  <form (ngSubmit)="onSubmit(signupForm)"  #signupForm="ngForm">
-
-
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" ngModel name="name" required class="form-control" >
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" ngModel name="email" required class="form-control" >
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" ngModel name="password" required class="form-control" >
-    </div>
+    <br>
+    
 
 
-    <h5>Are you a Course Coordinator or Instructor?</h5>
-    <mat-radio-group labelPosition="before" [(ngModel)]="typeChoice" name="type">
-        <div fxLayout="row" fxLayoutAlign="center center" class="content">
-          <mat-radio-button value="instructor">Instructor</mat-radio-button>
-          <mat-radio-button value="cc">Course Coordinator</mat-radio-button>
+  <div class="col-md-6 col-xl-5 offset-xl-1">
+    <div class="card wow fadeInRight" data-wow-delay="0.3s">
+      <div class="card-body">
+              <!--Header-->
+        <div class="text-center">
+          <h4 class="white-text"><i class="fas fa-user white-text"></i>Register</h4>
+          <hr class="hr-light">
         </div>
-    </mat-radio-group>
+          <form (ngSubmit)="onSubmit(signupForm)"  #signupForm="ngForm">
 
-  <button type="submit" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
 
-  </form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" ngModel name="name" required class="form-control" >
+              </div>
+          
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" ngModel name="email" required class="form-control" >
+              </div>
+          
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" ngModel name="password" required class="form-control" >
+              </div>
+          
+          
+              <h6>Are you a Course Coordinator or Instructor?</h6>
+              <mat-radio-group labelPosition="before" [(ngModel)]="typeChoice" name="type">
+                  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+                    <mat-radio-button value="instructor">Instructor</mat-radio-button>
+                    <mat-radio-button value="cc">Course Coordinator</mat-radio-button>
+                  </div>
+              </mat-radio-group>
+          
+            <button type="submit" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
+          
+            </form>
+          
+            <div id="registerAlert" class="alert alert-success collapse">
+              <a herf="#" class="close" data-dismiss="alert">&times;</a>
+              <strong>Success!</strong>   Successfully Registered! 
+            </div>
+          
+            <div id="registerFailAlert" class="alert alert-warning collapse">
+              <a herf="#" class="close" data-dismiss="alert">&times;</a>
+              <strong>Error!</strong>   Email already in used! Please Login
+            </div>
+          
+            <div id="connectionAlert" class="alert alert-warning collapse">
+              <a herf="#" class="close" data-dismiss="alert">&times;</a>
+              <strong>Error!</strong>   Connection Error! Please try again
+            </div>
 
-  <div id="registerAlert" class="alert alert-success collapse">
-    <a herf="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Success!</strong>   Successfully Registered! 
+
+          <div class="inline-ul text-center d-flex justify-content-center">
+                <a class="icons-sm tw-ic px-4"><i class="fab fa-twitter white-text"></i></a>
+                <a class="icons-sm li-ic px-4"><i class="fab fa-linkedin-in white-text"> </i></a>
+                <a class="icons-sm ins-ic px-4"><i class="fab fa-instagram white-text"> </i></a>
+          </div>
+
+      </div>
+    </div>
   </div>
-
-  <div id="registerFailAlert" class="alert alert-warning collapse">
-    <a herf="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Error!</strong>   Email already in used! Please Login
-  </div>
-
-  <div id="connectionAlert" class="alert alert-warning collapse">
-    <a herf="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Error!</strong>   Connection Error! Please try again
-  </div>
+  
 
 </div>

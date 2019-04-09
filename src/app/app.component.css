@@ -6,6 +6,14 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     width: 250px;
   }
   
+  .intro-2 {
+    background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554847346896&di=b927bf1cf5069b554e37e8f4ec2258e0&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F17%2F07%2F08%2Fa14cecec91ce24e8241d19d148b144da.jpg")no-repeat center center;
+    background-size: cover;
+  }
+  .view {
+    height: 100vh !important;
+   }
+
   a {
     text-decoration: none;
     color: white;
@@ -38,4 +46,32 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     line-height: 30px;
     margin: 010px;
     width: 85%;
+  }
+
+  @media (max-width: 740px) {
+    .full-height,
+    .full-height body,
+    .full-height header,
+    .full-height header .view {
+      height: 1040px;
+    }
+  }
+
+
+  
+ 
+
+  @media (max-width: 450px) {
+    .margins {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+  }
+  @media (max-width: 740px) {
+    .full-height,
+    .full-height body,
+    .full-height header,
+    .full-height header .view {
+      height: 1020px;
+    }
   }
