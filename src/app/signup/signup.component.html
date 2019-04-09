@@ -13,9 +13,17 @@
       <input type="password" ngModel name="password" required class="form-control" >
     </div>
 
-    <button type="submit" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
 
+    <mat-radio-group labelPosition="before"[(ngModel)]="pollModel">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-radio-button id="instructorC" value="1">Instructor</mat-radio-button>
+        <br>
+        <mat-radio-button id="ccC" value="2">Course Coordinator</mat-radio-button>
+      </div>
 
+      <button type="submit" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
+
+  </mat-radio-group>
   </form>
 
   <div id="registerAlert" class="alert alert-success collapse">
