@@ -5,6 +5,7 @@ import {PollComponent} from './poll/poll.component';
 import {MessagesComponent} from './messages/messages.component';
 import {GeneratescheduleComponent} from './generateschedule/generateschedule.component';
 import {LoginComponent} from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 // links between the websites
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'poll', component: PollComponent},
   {path: 'messages', component: MessagesComponent},
   {path: 'generateschedule', component: GeneratescheduleComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'signup',component:SignupComponent}
 ];
 
 @NgModule({

@@ -1,75 +1,25 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="example-form">
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username" [(ngModel)]="username" name ="username" required>
-                
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Password" [(ngModel)]="password" name ="password" required>
-                        
-                        </mat-form-field>
-                    </td>
+<div class="col-sm-8 col-sm-offset-2 ">
 
-                </tr>
-            </table>
-        </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button (click)="login()" color="primary">Login</button>
-    </mat-card-actions>
-    <br>
-    <br>
-    <br>
+    <h3>Login to SUTD Scheduler</h3>
+    <form (ngSubmit)="onSubmit(loginForm)"  #loginForm="ngForm">
+  
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" ngModel name="email" required class="form-control" >
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+      <input type="password" ngModel name="password" required class="form-control" >
+      </div>
+  
+      <button type="submit" [disabled]="!loginForm.valid" class="btn-block btn-primary">LOGIN</button>
+  
+    </form>
 
-    <mat-card-header>
-        <mat-card-title>New User? Register here</mat-card-title>
-    </mat-card-header>
-        <mat-card-content>
-            <form class="example-form">
-                <table class="example-full-width" cellspacing="0">
-                    <tr>
-                        <td>
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Username" [(ngModel)]="usernameReg" name ="usernameReg" required>
-                    
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Password" [(ngModel)]="passwordReg" name ="passwordReg" required>
-                            
-                            </mat-form-field>
-                        </td>
-    
-                    </tr>
-                </table>
-            </form>
-            <mat-spinner [style.display]="showSipnner ? 'block' : 'none'"></mat-spinner>
-        </mat-card-content>
-        
-        <mat-radio-group labelPosition=""[(ngModel)]="pollModel">
-            <div fxLayout="row" fxLayoutAlign="" class="content">
-            <mat-radio-button value="1">Instructor    </mat-radio-button>
-            <mat-radio-button value="2">Course Coordinator</mat-radio-button>
-            
-            </div>
-        </mat-radio-group>
-        <br>
-        <mat-card-actions>
-            <button mat-raised-button (click)="register()" color="primary">Register</button>
-        </mat-card-actions>
-</mat-card>
+    <div id="loginErrorAlert" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>ERROR!</strong>   Wrong password or username! Please try again
+    </div>
+  
+  </div>

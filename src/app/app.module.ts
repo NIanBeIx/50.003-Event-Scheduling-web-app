@@ -19,8 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { MatRadioModule } from '@angular/material';
-
-
+import {AuthService} from './db-service';
+import { SignupComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +29,8 @@ import { MatRadioModule } from '@angular/material';
     MessagesComponent,
     GeneratescheduleComponent,
     LoginComponent,
-    UserComponent
-
+    UserComponent,
+    SignupComponent
     
   ],
   imports: [
@@ -43,7 +43,7 @@ import { MatRadioModule } from '@angular/material';
     MatRadioModule
 
   ],
-  providers: [DataService],
+  providers: [DataService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,95 +1,41 @@
-<mat-sidenav-container>
-  <mat-sidenav  #sidenav role="navigation">
-    
-    <!-- Only Course Coordinator can access generate page -->
-    <!-- Only INstructor can access poll page-->
-   <mat-nav-list>
 
-    
-    <a mat-list-item
-      routerLink="/">
-      <mat-icon class="icon">home</mat-icon>  
-      <span class="label">Home</span>
-    </a>
-    
-    <a mat-list-item
-      routerLink="/messages">
-      <mat-icon class="icon">email</mat-icon>
-      <span class="label">Messages</span>
-    </a>
-  
-    <a mat-list-item
-      routerLink="/Generateschedule">
-      <mat-icon class="icon">schedule</mat-icon>
-      <span class="label">Generate</span>
-    </a>   
-    <a mat-list-item
-      routerLink="/Poll">
-      <mat-icon class="icon">dashboard</mat-icon>  
-      <span class="label">Poll</span>
-    </a>
-    <a  mat-list-item type="button">
-      <mat-icon class="icon">input</mat-icon>
-      <span class="label">LogOut</span>
-    </a>  
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-     <div fxHide.gt-xs>
-       <button mat-icon-button (click)='sidenav.toggle()'>
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-     <div>
-       <a>
-          Scheduler
-       </a>
-     </div>
-     <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-            <li>
-                <a 
-                  routerLink="/">
-                    <mat-icon class="icon">home</mat-icon>
-                    <span class="label">Home</span>
-                </a>
-              </li>
-              
-            <li>
-                <a
-                  routerLink="messages">
-                  <mat-icon class="icon">email</mat-icon>
-                  <span  class="label">Messages</span>
-                 </a>
-            </li>
-          
-            <li>
-              <a
-                routerLink="/Generateschedule">
-                <mat-icon class="icon">schedule</mat-icon>
-                <span  class="label">Generate</span>
-               </a>
-          </li>
-            
-            <li>
-                <a
-                  routerLink="/Poll">
-                    <mat-icon class="icon">dashboard</mat-icon>
-                    <span class="label">Poll</span>
-                </a>
-              </li>
-            <li>
-                <a>
-                  <mat-icon class="icon">input</mat-icon>
-                  <span class="label">LogOut</span>
-                 </a>
-            </li>
-        </ul>
-     </div>
-    </mat-toolbar>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">SUTD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/message">Message</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/generateschedule">Generate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/poll">Poll</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
