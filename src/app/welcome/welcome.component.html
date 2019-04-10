@@ -1,14 +1,55 @@
 <div class="text-align:center">
 
   <h1>SUTD Schedule Polling Station</h1>
+
+  <div> 
+     
+    <div class="container"> 
+      <div fxLayout="row" fxLayoutAlign="center center" class="content"> 
+        <mat-card class="card" > 
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column"> 
+            <h3>Generated Schedules:</h3> 
+          </mat-card-title> 
+          <mat-card-content> 
+              <div class="example-container mat-elevation-z8"> 
+                  <mat-table #table [dataSource]="dataSource"> 
+                  <ng-container matColumnDef="day"> 
+                    <mat-header-cell *matHeaderCellDef> Day </mat-header-cell> 
+                    <mat-cell *matCellDef="let element"> {{element.day}} </mat-cell> 
+                  </ng-container> 
+                    <ng-container matColumnDef="time"> 
+                      <mat-header-cell *matHeaderCellDef> Time</mat-header-cell> 
+                       
+                      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell> 
+                    </ng-container> 
+                    <ng-container matColumnDef="venue"> 
+                      <mat-header-cell *matHeaderCellDef> Venue </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.venue}} </mat-cell> 
+                    </ng-container> 
+
+                    <ng-container matColumnDef="instructor"> 
+                      <mat-header-cell *matHeaderCellDef> Instructors </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.instructor}} </mat-cell> 
+                    </ng-container>
+
+                    <ng-container matColumnDef="course"> 
+                      <mat-header-cell *matHeaderCellDef> Course </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.course}} </mat-cell> 
+                    </ng-container>
+                      
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> 
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> 
+                  </mat-table> 
+                </div>  
+          </mat-card-content> 
+        </mat-card> 
+      </div> 
+    </div> 
+  </div> 
   
 
 
-      <p>
-          Insert Current Schedule here
-          <br> 
-        </p>
-
+   
 
         <br>
         <div class="col-md-6 col-xl-5 offset-xl-1">

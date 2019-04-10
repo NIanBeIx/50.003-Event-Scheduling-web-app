@@ -7,11 +7,13 @@
 
  
 export interface Post{
-    title:string;
+    
+    position: number; 
+    day: string;
+    time: string;
+    venue: string;
+    instructor: string;
     course: string;
-    date_posted: Date;
-    position: number;
-    body: string;
 
     /** period:string; */
 

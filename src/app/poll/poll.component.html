@@ -1,61 +1,71 @@
-<div>
-    
-      <div class="container">
-        <div fxLayout="row" fxLayoutAlign="center center" class="content">
-          <mat-card class="card" >
-            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-              <h3>Generated Schedules:</h3>
-            </mat-card-title>
-            <mat-card-content>
-                <div class="example-container mat-elevation-z8">
-                    <mat-table #table [dataSource]="dataSource">
-                    <ng-container matColumnDef="date_posted">
-                      <mat-header-cell *matHeaderCellDef> Date Posted </mat-header-cell>
-                      <mat-cell *matCellDef="let element"> {{element.date_posted  | date: 'd/M/y'}} </mat-cell>
-                    </ng-container>
-                      <ng-container matColumnDef="title">
-                        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-                        
-                        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="course">
-                        <mat-header-cell *matHeaderCellDef> Course </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.course}} </mat-cell>
-                      </ng-container>
+<div> 
+     
+    <div class="container"> 
+      <div fxLayout="row" fxLayoutAlign="center center" class="content"> 
+        <mat-card class="card" > 
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column"> 
+            <h3>Generated Schedules:</h3> 
+          </mat-card-title> 
+          <mat-card-content> 
+              <div class="example-container mat-elevation-z8"> 
+                  <mat-table #table [dataSource]="dataSource"> 
+                  <ng-container matColumnDef="day"> 
+                    <mat-header-cell *matHeaderCellDef> Day </mat-header-cell> 
+                    <mat-cell *matCellDef="let element"> {{element.day}} </mat-cell> 
+                  </ng-container> 
+                    <ng-container matColumnDef="time"> 
+                      <mat-header-cell *matHeaderCellDef> Time</mat-header-cell> 
                        
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                    </mat-table>
-                  </div> 
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-    </div>
+                      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell> 
+                    </ng-container> 
+                    <ng-container matColumnDef="venue"> 
+                      <mat-header-cell *matHeaderCellDef> Venue </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.venue}} </mat-cell> 
+                    </ng-container> 
+
+                    <ng-container matColumnDef="instructor"> 
+                      <mat-header-cell *matHeaderCellDef> Instructors </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.instructor}} </mat-cell> 
+                    </ng-container>
+
+                    <ng-container matColumnDef="course"> 
+                      <mat-header-cell *matHeaderCellDef> Course </mat-header-cell> 
+                      <mat-cell *matCellDef="let element"> {{element.course}} </mat-cell> 
+                    </ng-container>
+                      
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> 
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> 
+                  </mat-table> 
+                </div>  
+          </mat-card-content> 
+        </mat-card> 
+      </div> 
+    </div> 
+  </div> 
 
 
-    <!-- below are the widgets used to vote-->
+  <!-- below are the widgets used to vote--> 
 
-    <br>
-    <mat-radio-group labelPosition="before"[(ngModel)]="pollModel">
-        <div fxLayout="row" fxLayoutAlign="center center" class="content">
-          <mat-radio-button value="1">Schedule 1</mat-radio-button>
-          <mat-radio-button value="2">Schedule 2</mat-radio-button>
-          <mat-radio-button value="3">Schedule 3</mat-radio-button>
-        </div>
-    </mat-radio-group>
+  <br> 
+  <mat-radio-group labelPosition="before"[(ngModel)]="pollModel"> 
+      <div fxLayout="row" fxLayoutAlign="center center" class="content"> 
+        <mat-radio-button value="1">Schedule 1</mat-radio-button> 
+        <mat-radio-button value="2">Schedule 2</mat-radio-button> 
+        <mat-radio-button value="3">Schedule 3</mat-radio-button> 
+      </div> 
+  </mat-radio-group> 
 
-    <div>{{pollModel}}</div>
-      <br>  
-      <div class="container">
-          <div class="container">
-            <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
-                <div class="blocks">
-                    <button button="submit" mat-raised-button color="primary">
-                        <mat-icon>poll</mat-icon> Vote
-                    </button>
-                </div>
-            </div>
-          </div>
-    <br>
-  </div>
+  <div>{{pollModel}}</div> 
+    <br>   
+    <div class="container"> 
+        <div class="container"> 
+          <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content"> 
+              <div class="blocks"> 
+                  <button button="submit" mat-raised-button color="primary"> 
+                      <mat-icon>poll</mat-icon> Vote 
+                  </button> 
+              </div> 
+          </div> 
+        </div> 
+  <br> 
+</div>

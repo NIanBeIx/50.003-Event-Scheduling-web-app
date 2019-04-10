@@ -19,7 +19,7 @@ export class PollComponent {
   constructor(private dataService: DataService) {
   }
 
-  displayedColumns = ['date_posted', 'title', 'course'];
+  displayedColumns = ['day', 'time', 'venue', 'instructor','course'];
   dataSource = new PostDataSource(this.dataService);
 }
 
