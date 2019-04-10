@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+    <scanAnnotatedClasses/>
+ 
+    <scoreDirectorFactory>
+        <easyScoreCalculatorClass>mypackage.ScoreCalculator</easyScoreCalculatorClass>
+    </scoreDirectorFactory>
+ 
+    <termination>
+        <secondsSpentLimit>120</secondsSpentLimit>
+    </termination>
+	<!-- <moveThreadCount>4</moveThreadCount> -->
+</solver>
