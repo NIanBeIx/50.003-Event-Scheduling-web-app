@@ -8,6 +8,7 @@ import {LoginComponent} from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logoutPage/logout/logout.component';
 import { DisplayComponent } from './display/display.component';
+import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 
 // links between the websites
 
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup',component:SignupComponent},
   {path: 'logout',component:LogoutComponent},
-  {path: 'display',component:DisplayComponent}
+  {path: 'display',component:DisplayComponent},
+  {path: 'waiting',component:WaitingPageComponent}
 ];
 
 @NgModule({

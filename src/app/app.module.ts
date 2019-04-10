@@ -23,6 +23,7 @@ import {AuthService} from './db-service';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logoutPage/logout/logout.component';
 import { DisplayComponent } from './display/display.component';
+import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { DisplayComponent } from './display/display.component';
     UserComponent,
     SignupComponent,
     LogoutComponent,
-    DisplayComponent
+    DisplayComponent,
+    WaitingPageComponent
     
   ],
   imports: [

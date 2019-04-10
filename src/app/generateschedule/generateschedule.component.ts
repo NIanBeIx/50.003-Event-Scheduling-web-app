@@ -45,17 +45,7 @@ export class GeneratescheduleComponent implements OnInit {
 
   ngOnInit() {
 
-    var namebyemail=firebase.firestore().collection('instructors').where('status','==',1).onSnapshot(queryshot=>{
-      const articles=[]
-      queryshot.forEach((doc)=>{
-        console.log(doc.get('type'))
-        const itype=doc.get('type');
-        //firebase.firestore().collection('instructors').doc(iname).update({status:1});
-        if(itype=='instructor'){
-          window.location.href='./display';
-        }
-      })
-    })
+    
   }
 
   push(content:string){
