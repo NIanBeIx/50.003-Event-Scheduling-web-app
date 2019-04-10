@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material';
 import {AuthService} from './db-service';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logoutPage/logout/logout.component';
+import { DisplayComponent } from './display/display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { LogoutComponent } from './logoutPage/logout/logout.component';
     LoginComponent,
     UserComponent,
     SignupComponent,
-    LogoutComponent
+    LogoutComponent,
+    DisplayComponent
     
   ],
   imports: [
