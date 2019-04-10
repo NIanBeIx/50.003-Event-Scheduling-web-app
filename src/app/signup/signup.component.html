@@ -17,16 +17,21 @@
 
 
               <div class="form-group">
+                <i class="fas fa-lock prefix white-text"></i>
+
                 <label for="name">Name</label>
                 <input type="text" ngModel name="name" required class="form-control" >
               </div>
           
               <div class="form-group">
+                <i class="fas fa-lock prefix white-text"></i>
                 <label for="email">Email Address</label>
                 <input type="email" ngModel name="email" required class="form-control" >
               </div>
           
               <div class="form-group">
+                <i class="fas fa-lock prefix white-text"></i>
+
                 <label for="password">Password</label>
                 <input type="password" ngModel name="password" required class="form-control" >
               </div>
@@ -35,6 +40,8 @@
               <h6>Are you a Course Coordinator or Instructor?</h6>
               <mat-radio-group labelPosition="before" [(ngModel)]="typeChoice" name="type">
                   <div fxLayout="row" fxLayoutAlign="center center" class="content">
+                    <i class="fas fa-lock prefix white-text"></i>
+
                     <mat-radio-button value="instructor">Instructor</mat-radio-button>
                     <mat-radio-button value="cc">Course Coordinator</mat-radio-button>
                   </div>

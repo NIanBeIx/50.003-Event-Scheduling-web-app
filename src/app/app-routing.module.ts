@@ -6,6 +6,7 @@ import {MessagesComponent} from './messages/messages.component';
 import {GeneratescheduleComponent} from './generateschedule/generateschedule.component';
 import {LoginComponent} from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { LogoutComponent } from './logoutPage/logout/logout.component';
 
 // links between the websites
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'messages', component: MessagesComponent},
   {path: 'generateschedule', component: GeneratescheduleComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'signup',component:SignupComponent}
+  {path: 'signup',component:SignupComponent},
+  {path: 'logout',component:LogoutComponent}
 ];
 
 @NgModule({

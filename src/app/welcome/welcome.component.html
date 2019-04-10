@@ -3,32 +3,48 @@
   <h1>SUTD Schedule Polling Station</h1>
   
 
-  <mat-card class="example-card">
 
       <p>
           Insert Current Schedule here
           <br> 
         </p>
-      <mat-card-header>
-        <mat-card-title>Send Course Coordinator Comments On The Schedule</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form class="example-form">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Message" [(ngModel)]="message" name="message" required>
-              </mat-form-field>
-            </td>
-          </tr>
-        </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-      </mat-card-content>
-    
-      <mat-card-actions>
-        <button mat-raised button (click)="sendMessage()" color="primary">Send</button>
-      </mat-card-actions>
-    </mat-card>
+
+
+        <br>
+        <div class="col-md-6 col-xl-5 offset-xl-1">
+            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+              <div class="card-body">
+                  <mat-card class="example-card">
+
+                  <mat-card-header>
+                      <mat-card-title>Send Course Coordinator Comments On The Schedule</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <form class="example-form">
+                        <tr>
+                          <td>
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Message" [(ngModel)]="message" name="message" required>
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </form>
+                      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                    </mat-card-content>
+                  
+                    <mat-card-actions>
+                      <button mat-raised button (click)="sendMessage()" color="primary">Send</button>
+                    </mat-card-actions>
+                  </mat-card>
+
+
+
+
+              </div>
+            </div>
+        </div>
+
+      
     
 
 

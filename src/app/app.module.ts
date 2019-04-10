@@ -21,6 +21,7 @@ import { UserComponent } from './user/user.component';
 import { MatRadioModule } from '@angular/material';
 import {AuthService} from './db-service';
 import { SignupComponent } from './signup/signup.component';
+import { LogoutComponent } from './logoutPage/logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { SignupComponent } from './signup/signup.component';
     GeneratescheduleComponent,
     LoginComponent,
     UserComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
     
   ],
   imports: [
