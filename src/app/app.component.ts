@@ -18,6 +18,8 @@ export class AppComponent {
         storageBucket: "login-6ce71.appspot.com",
         messagingSenderId: "319730109584"
     };
+
+    
     firebase.initializeApp(config);
 
     console.log("firebase initiated");

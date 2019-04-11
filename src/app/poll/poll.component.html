@@ -1,71 +1,28 @@
-<div> 
-     
-    <div class="container"> 
-      <div fxLayout="row" fxLayoutAlign="center center" class="content"> 
-        <mat-card class="card" > 
-          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column"> 
-            <h3>Generated Schedules:</h3> 
-          </mat-card-title> 
-          <mat-card-content> 
-              <div class="example-container mat-elevation-z8"> 
-                  <mat-table #table [dataSource]="dataSource"> 
-                  <ng-container matColumnDef="day"> 
-                    <mat-header-cell *matHeaderCellDef> Day </mat-header-cell> 
-                    <mat-cell *matCellDef="let element"> {{element.day}} </mat-cell> 
-                  </ng-container> 
-                    <ng-container matColumnDef="time"> 
-                      <mat-header-cell *matHeaderCellDef> Time</mat-header-cell> 
-                       
-                      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell> 
-                    </ng-container> 
-                    <ng-container matColumnDef="venue"> 
-                      <mat-header-cell *matHeaderCellDef> Venue </mat-header-cell> 
-                      <mat-cell *matCellDef="let element"> {{element.venue}} </mat-cell> 
-                    </ng-container> 
-
-                    <ng-container matColumnDef="instructor"> 
-                      <mat-header-cell *matHeaderCellDef> Instructors </mat-header-cell> 
-                      <mat-cell *matCellDef="let element"> {{element.instructor}} </mat-cell> 
-                    </ng-container>
-
-                    <ng-container matColumnDef="course"> 
-                      <mat-header-cell *matHeaderCellDef> Course </mat-header-cell> 
-                      <mat-cell *matCellDef="let element"> {{element.course}} </mat-cell> 
-                    </ng-container>
-                      
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> 
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> 
-                  </mat-table> 
-                </div>  
-          </mat-card-content> 
-        </mat-card> 
-      </div> 
-    </div> 
-  </div> 
+<br>
 
 
-  <!-- below are the widgets used to vote--> 
+  <table mdbTable class="z-depth-1" id="mytable">
+      <thead>
 
-  <br> 
-  <mat-radio-group labelPosition="before"[(ngModel)]="pollModel"> 
-      <div fxLayout="row" fxLayoutAlign="center center" class="content"> 
-        <mat-radio-button value="1">Schedule 1</mat-radio-button> 
-        <mat-radio-button value="2">Schedule 2</mat-radio-button> 
-        <mat-radio-button value="3">Schedule 3</mat-radio-button> 
-      </div> 
-  </mat-radio-group> 
 
-  <div>{{pollModel}}</div> 
-    <br>   
-    <div class="container"> 
-        <div class="container"> 
-          <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content"> 
-              <div class="blocks"> 
-                  <button button="submit" mat-raised-button color="primary"> 
-                      <mat-icon>poll</mat-icon> Vote 
-                  </button> 
-              </div> 
-          </div> 
-        </div> 
-  <br> 
-</div>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[i]">{{head}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr ng-repeat="scan in Scans" *ngFor="let el of elements; let i = index">
+          <th scope="row">{{el.classNumber}}</th>
+          <td>{{el.cohortNumber}}</td>
+          <td>{{el.startPeriod}}</td>
+          <td>{{el.numberOfPeriods}}</td>
+          <td>{{el.courseName}}</td>
+          <td>{{el.day}}</td>
+          <td>{{el.roomName}}</td>
+          <td>{{el.roomId}}</td>
+      </tr>
+      </tbody>
+    </table>

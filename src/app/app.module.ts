@@ -18,12 +18,17 @@ import { GeneratescheduleComponent } from './generateschedule/generateschedule.c
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { MatRadioModule } from '@angular/material';
+import { MatRadioModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSortModule, MatTableModule, MatTableDataSource, MatIconModule } from '@angular/material';
 import {AuthService} from './db-service';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logoutPage/logout/logout.component';
 import { DisplayComponent } from './display/display.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
+import {TableModule} from '../../node_modules/angular-bootstrap-md'
+import {IconsModule} from '../../node_modules/angular-bootstrap-md'
+import { BeforeScheduleDisplayComponent } from './before-schedule-display/before-schedule-display.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +41,8 @@ import { WaitingPageComponent } from './waiting-page/waiting-page.component';
     SignupComponent,
     LogoutComponent,
     DisplayComponent,
-    WaitingPageComponent
+    WaitingPageComponent,
+    BeforeScheduleDisplayComponent
     
   ],
   imports: [
@@ -46,7 +52,15 @@ import { WaitingPageComponent } from './waiting-page/waiting-page.component';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    TableModule,
+    MatIconModule,
+    IconsModule
 
   ],
   providers: [DataService,AuthService],

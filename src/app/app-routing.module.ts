@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logoutPage/logout/logout.component';
 import { DisplayComponent } from './display/display.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
+import { BeforeScheduleDisplayComponent } from './before-schedule-display/before-schedule-display.component';
 
 // links between the websites
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'signup',component:SignupComponent},
   {path: 'logout',component:LogoutComponent},
   {path: 'display',component:DisplayComponent},
-  {path: 'waiting',component:WaitingPageComponent}
+  {path: 'waiting',component:WaitingPageComponent},
+  {path: 'beforeschedule',component:BeforeScheduleDisplayComponent}
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Post} from '../Post';
 import {Observable, of} from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class DataService {
@@ -11,6 +12,35 @@ export class DataService {
     {position: 1, title: 'Schedule Two', course: '2019 ISTD - 50.003 : Elements of Software Construction', date_posted: new Date(), body: 'Body 2'},
     {position: 2, title: 'Schedule Three', course: '2019 ISTD - 50.003 : Elements of Software Construction', date_posted: new Date(), body: 'Body 3'},
    */
+
+
+   firebaseGetName(){
+    var namebyemail=firebase.firestore().collection('instructors').where('status','==',1).onSnapshot(queryshot=>{
+      const articles=[]
+      queryshot.forEach((doc)=>{
+        console.log(doc.get('instructorName'))
+        const iname=doc.get('instructorName');
+        //firebase.firestore().collection('instructors').doc(iname).update({status:1});
+        return iname;
+      })
+    })
+   }
+
+
+   firebaseGetLectures(instructorname:string){
+     firebase.firestore().collection('instructors').doc(instructorname).collection('lectures').where('day','==','MONDAY').get().then(
+       function(querySnapShot){
+         querySnapShot.forEach(function(doc){
+           console.log(doc.id,'=>',doc.data());
+         });
+       }
+     );
+   }
+
+   ngOnInit(){
+    
+  }
+   
 
 
   ELEMENT_DATA: Post[] = [

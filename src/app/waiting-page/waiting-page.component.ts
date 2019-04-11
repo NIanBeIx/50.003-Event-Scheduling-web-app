@@ -14,15 +14,23 @@ export class WaitingPageComponent implements OnInit {
 
     var namebyemail=firebase.firestore().collection('instructors').where('status','==',1).onSnapshot(queryshot=>{
       const articles=[]
+      if(queryshot.size==0){
+        window.location.href='/generateschedule';
+      }
       queryshot.forEach((doc)=>{
-        console.log(doc.get('type'))
-        const itype=doc.get('type');
+        if(doc.exists){
+          console.log(doc.get('type'))
+          const itype=doc.get('type');
         //firebase.firestore().collection('instructors').doc(iname).update({status:1});
-        if(itype=='instructor'){
-          window.location.href='/display';
+          if(itype=='instructor'){
+            window.location.href='/display';
+          }else{
+            window.location.href='/generateschedule';
+          }
         }else{
           window.location.href='/generateschedule';
         }
+        
       })
     })
   }
