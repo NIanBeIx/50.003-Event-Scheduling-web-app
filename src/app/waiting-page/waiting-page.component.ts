@@ -23,7 +23,7 @@ export class WaitingPageComponent implements OnInit {
           const itype=doc.get('type');
         //firebase.firestore().collection('instructors').doc(iname).update({status:1});
           if(itype=='instructor'){
-            window.location.href='/display';
+            window.location.href='/beforeschedule';
           }else{
             window.location.href='/generateschedule';
           }
