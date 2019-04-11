@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase';
+import {FormsModule} from '@angular/forms';
 
 export interface Periods{
   value: string;
@@ -17,11 +18,21 @@ export interface Venues{
   templateUrl: './generateschedule.component.html',
   styleUrls: ['./generateschedule.component.css']
 })
+
+
 export class GeneratescheduleComponent implements OnInit {
   //selectedNumberOfPeriods: string;
   //selectedValue: string;
   periodNumber:'1';
   venueNumber:'1';
+
+  private myMethod(event:any):void
+{
+   console.log("AAA");
+   firebase.firestore().collection('algo').doc("algoStatus").set({status:"generate"});
+   console.log("BBB");
+}
+  
 
   periods: Periods[]=[
     {value: '1', viewValue: '1 Period'},
