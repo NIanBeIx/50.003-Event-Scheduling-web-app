@@ -48,8 +48,10 @@ public class Main {
 				if (document.exists()) {
 					if (document.getString("status").equals("generate")) {
 						ApiFuture<WriteResult> futureWriteStart = docRef.update("status", "generating");
+						System.out.println("Generating");
 						start();
 						ApiFuture<WriteResult> futureWriteEnd = docRef.update("status", "ready");
+						System.out.println("Completed generating!");
 					} else {
 						Thread.sleep(3000);
 					}
