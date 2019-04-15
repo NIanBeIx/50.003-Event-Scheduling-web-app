@@ -75,6 +75,7 @@ export class GeneratescheduleComponent implements OnInit {
     const instructors=form.value.instructorList;
     const periods=form.value.numberOfPeriod;
     const numberOfClass=form.value.numberOfCohort;
+    // const positionOfSharedLecture=form.value.positionOfSharedLecture
 
     var instructorArray=instructors.split(",");
     
