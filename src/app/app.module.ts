@@ -27,6 +27,7 @@ import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import {TableModule} from '../../node_modules/angular-bootstrap-md'
 import {IconsModule} from '../../node_modules/angular-bootstrap-md'
 import { BeforeScheduleDisplayComponent } from './before-schedule-display/before-schedule-display.component';
+import { SoftconstraintsComponent } from './softconstraints/softconstraints.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { BeforeScheduleDisplayComponent } from './before-schedule-display/before
     LogoutComponent,
     DisplayComponent,
     WaitingPageComponent,
-    BeforeScheduleDisplayComponent
+    BeforeScheduleDisplayComponent,
+    SoftconstraintsComponent
     
   ],
   imports: [
