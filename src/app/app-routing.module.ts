@@ -10,6 +10,7 @@ import { LogoutComponent } from './logoutPage/logout/logout.component';
 import { DisplayComponent } from './display/display.component';
 import { WaitingPageComponent } from './waiting-page/waiting-page.component';
 import { BeforeScheduleDisplayComponent } from './before-schedule-display/before-schedule-display.component';
+import { SoftconstraintsComponent } from './softconstraints/softconstraints.component';
 
 // links between the websites
 
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'logout',component:LogoutComponent},
   {path: 'display',component:DisplayComponent},
   {path: 'waiting',component:WaitingPageComponent},
-  {path: 'beforeschedule',component:BeforeScheduleDisplayComponent}
+  {path: 'beforeschedule',component:BeforeScheduleDisplayComponent},
+  {path: 'softconstraints',component:SoftconstraintsComponent}
 ];
 
 @NgModule({
