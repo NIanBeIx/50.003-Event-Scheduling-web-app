@@ -22,9 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,private authservice:AuthService) { }
 
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   SuccessLoginRespond(email:string){
     $('#loginSucAlert').show()
@@ -67,6 +65,16 @@ export class LoginComponent implements OnInit {
 
 
     this.login(email,passward);
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var email = user.email;
+        console.log("user login is: "+user.email);
+        // ...
+      } else {
+      }
+    });
   }
 
 
