@@ -11,28 +11,32 @@ export class WaitingPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var email = user.email;
+        console.log("user login is: "+user.email);
 
-    var namebyemail=firebase.firestore().collection('instructors').where('status','==',1).onSnapshot(queryshot=>{
-      const articles=[]
-      if(queryshot.size==0){
-        window.location.href='/generateschedule';
-      }
-      queryshot.forEach((doc)=>{
-        if(doc.exists){
-          console.log(doc.get('type'))
-          const itype=doc.get('type');
-        //firebase.firestore().collection('instructors').doc(iname).update({status:1});
-          if(itype=='instructor'){
-            window.location.href='/beforeschedule';
-          }else{
-            window.location.href='/generateschedule';
+
+        firebase.firestore().collection('instructors').where('email','==',user.email).get().then(
+          sub=>{
+            var returnList=[];
+    
+            sub.forEach(doc=>{
+              const datas=doc.data();
+              var itype=datas.type;
+              if(itype=='instructor'){
+                console.log("access denied");
+                window.location.href='';
+
+              }else{
+                window.location.href='/generateschedule';
+              }
+            });
+            });
           }
-        }else{
-          window.location.href='/generateschedule';
-        }
-        
-      })
-    })
+        });
   }
+
 
 }

@@ -54,17 +54,27 @@ export class SignupComponent implements OnInit {
 
   onSubmit( form: NgForm){
     const email=form.value.email;
-    const passward=form.value.password;
+    const password=form.value.password;
     const name=form.value.name;
     const t=form.value.type;
  
-    this.signUp(email,passward);
-    firebase.firestore().collection('instructors').doc(name).set({
-      instructorName:name,
-      email:email,
-      passward:passward,
-      status:0,
-      type:t
-    })
+    //this.signUp(email,password);
+
+
+    firebase.auth().createUserWithEmailAndPassword(email,password).then(
+      response=>(
+      firebase.firestore().collection('instructors').doc(name).set({
+        instructorName:name,
+        email:email,
+        passward:password,
+        status:0,
+        type:t
+      }),this.successF()
+      )
+    ).catch(
+      error=>this.errorF()
+    );
+
+    
   }
 }

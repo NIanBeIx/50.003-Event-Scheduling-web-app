@@ -21,57 +21,79 @@ export class BeforeScheduleDisplayComponent implements OnInit {
     }
   static elements:any=[];
 
+  static myEmail:any;
   ngOnInit() {
     var myrouter=this.router;
+    var myEmail;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var email = user.email;
+        BeforeScheduleDisplayComponent.myEmail=email;
+        console.log("user login is: "+user.email);
+
+
+        firebase.firestore().collection('instructors').where('email','==',user.email).get().then(
+          sub=>{
+            var returnList=[];
+    
+            sub.forEach(doc=>{
+              const datas=doc.data();
+              if(datas.type=="instructor"){
+                console.log("found active instructor  "+datas.instructorName);
+                returnList.push(datas.instructorName);
+                //return datas.instructorName;
+                //console.log(returnList.length+"  from inside");
+              }else{
+                console.log("error! course coordinator shouldn't be accessing this page!");
+                //window.location.href='/poll'
+              }
+            })
+            setTimeout(function(){
+              //console.log("from outside  "+returnList[0]); 
+              firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').get().then(
+                snapshot=>{
+                  var rawList=[]; 
+                  var count=0;
+                  snapshot.forEach(doc=>{
+                    const key=doc.id;
+                    firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').doc(key).get().then(function(temp){
+                      const a=temp.data();
+                      tempelements.push(a);
+                      console.log("elements length "+tempelements.length);
+                      rawList.push(a);
+                      console.log(tempelements);
+                    })
+                  });
+                  //get rawList: lectures for the current login instructor
+                });
+    
+                setTimeout(function(){
+                  
+                BeforeScheduleDisplayComponent.elements=tempelements;
+                console.log(BeforeScheduleDisplayComponent.elements);
+                
+              },3000);
+    
+            },1000);
+          });
+    
+        setTimeout(function(){
+          //window.location.href='/poll';
+        },10000);
+
+
+
+
+
+        // ...
+      } 
+    });
+    console.log("outside email is: "+BeforeScheduleDisplayComponent.myEmail);
 
     var tempelements=[];
-    firebase.firestore().collection('instructors').where('status','==',1).get().then(
-      sub=>{
-        var returnList=[];
-
-        sub.forEach(doc=>{
-          const datas=doc.data();
-          if(datas.type=="instructor"){
-            console.log("found active instructor  "+datas.instructorName);
-            returnList.push(datas.instructorName);
-            //return datas.instructorName;
-            //console.log(returnList.length+"  from inside");
-          }else{
-            console.log("error! course coordinator shouldn't be accessing this page!");
-          }
-        })
-        setTimeout(function(){
-          //console.log("from outside  "+returnList[0]); 
-          firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').get().then(
-            snapshot=>{
-              var rawList=[]; 
-              var count=0;
-              snapshot.forEach(doc=>{
-                const key=doc.id;
-                firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').doc(key).get().then(function(temp){
-                  const a=temp.data();
-                  tempelements.push(a);
-                  console.log("elements length "+tempelements.length);
-                  rawList.push(a);
-                  console.log(tempelements);
-                })
-              });
-              //get rawList: lectures for the current login instructor
-            });
-
-            setTimeout(function(){
-              
-            BeforeScheduleDisplayComponent.elements=tempelements;
-            console.log(BeforeScheduleDisplayComponent.elements);
-            
-          },3000);
-
-        },1000);
-      });
-
-    setTimeout(function(){
-      //window.location.href='/poll';
-    },10000);
+    
+    
 
     
 
