@@ -12,14 +12,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
 
-    var namebyemail=firebase.firestore().collection('instructors').where('status','==',1).onSnapshot(queryshot=>{
-      const articles=[]
-      queryshot.forEach((doc)=>{
-        console.log(doc.get('instructorName'))
-        const iname=doc.get('instructorName');
-        firebase.firestore().collection('instructors').doc(iname).update({status:0});
-      })
-    })
+    firebase.auth().signOut();
     console.log("successfully logout!");
   }
 

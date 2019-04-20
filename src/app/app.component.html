@@ -18,44 +18,77 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" (click)='loginCondition()'>Login</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Sign Up</a>
+                    <a class="nav-link" (click)='signupCondition()' >Sign Up</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/message">Message</a>
+                    <a class="nav-link" (click)='msgCondition()' >Message</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/softconstraints">Soft Constraints</a>
+                    <a class="nav-link" (click)='softCondition()' >Soft Constraints</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link "  href="/waiting">Generate</a>
+                    <a class="nav-link " (click)='generateCondition()' >Generate</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/beforeschedule">View Schedule</a>
+                    <a class="nav-link" (click)='viewCondition()' >View Schedule</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
+                    <a class="nav-link" (click)='logoutCondition()' >Logout</a>
                 </li>
 
                 
             </ul>
         </div>
+    
     </nav>
+    <div id="plslogin" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Sorry!</strong>   Please Login First ~
+    </div>
+
+
+
+
+
+    <div id="blockLoginAlert" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Sorry!</strong>   You have already loged in~
+    </div>
+
+    <div id="blockSignupAlert" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Sorry!</strong>   Please Logout first
+    </div>
+
+
+    <div id="blockMSGAlert" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Sorry!</strong>   Access Denied.
+    </div>
+
+
+    <div id="blockGenerateAlert" class="alert alert-warning collapse">
+        <a herf="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Sorry!</strong>   Access Denied.
+    </div>
 
     <section class="view intro-2 rgba-gradient">
                 
-            <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
         
-        </section>
-        
+    </section>
+
+    
+
 
 </div>
             
