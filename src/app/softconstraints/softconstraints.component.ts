@@ -12,4 +12,8 @@ export class SoftconstraintsComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendSoftConstaints(){ 
+    
+  }
+
 }
