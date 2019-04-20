@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
 import {Router} from '@angular/router';
-
 import {MatDialog} from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'app/db-service';
@@ -76,7 +72,4 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
-
-
 }
