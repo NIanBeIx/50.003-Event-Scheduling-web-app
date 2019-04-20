@@ -43,7 +43,6 @@ export class BeforeScheduleDisplayComponent implements OnInit {
                 console.log("found active instructor  "+datas.instructorName);
                 returnList.push(datas.instructorName);
                 //return datas.instructorName;
-                //console.log(returnList.length+"  from inside");
               }else{
                 console.log("error! course coordinator shouldn't be accessing this page!");
                 //window.location.href='/poll'
@@ -59,6 +58,7 @@ export class BeforeScheduleDisplayComponent implements OnInit {
                     const key=doc.id;
                     firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').doc(key).get().then(function(temp){
                       const a=temp.data();
+                      //console.log("hhhhhhhhhhhhhhhhhhhhh "+a.get('classNumber'));
                       tempelements.push(a);
                       console.log("elements length "+tempelements.length);
                       rawList.push(a);
@@ -107,7 +107,7 @@ export class BeforeScheduleDisplayComponent implements OnInit {
       console.log("here are "+BeforeScheduleDisplayComponent.elements.length+" lectures")
     },10000);
     
-    var tempheadElements = ['classNumber', 'cohortNumber', 'startPeriod', 'numberOfPeriods','courseName','day','roomName','roomId'];
+    //var tempheadElements = ['classNumber', 'cohortNumber', 'startPeriod', 'numberOfPeriods','courseName','day','roomName','roomId'];
     
     
 

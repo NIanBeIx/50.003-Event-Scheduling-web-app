@@ -155,7 +155,7 @@ export class PollComponent implements OnInit{
   */
 //return current login user name (check whether he/she is instructor)
  
-  headElements = ['classNumber', 'cohortNumber', 'startPeriod', 'numberOfPeriods','courseName','day','roomName','roomId'];
+  headElements = ['classNumber', 'cohortNumber', 'startTime','endTime','courseName','day','roomName','roomId'];
 
 
   ngOnInit(){
