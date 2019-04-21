@@ -7,7 +7,7 @@
     </scoreDirectorFactory>
  
     <termination>
-        <!-- <secondsSpentLimit>10</secondsSpentLimit> -->
+        <unimprovedMinutesSpentLimit>2</unimprovedMinutesSpentLimit>
 		<bestScoreFeasible>true</bestScoreFeasible>
     </termination>
 	<!-- <moveThreadCount>4</moveThreadCount> -->

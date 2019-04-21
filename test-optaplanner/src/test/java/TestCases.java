@@ -2,6 +2,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,9 +16,13 @@ import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.core.config.solver.termination.TerminationConfig;
 
+import com.google.cloud.firestore.Firestore;
+
 import mypackage.Course;
 import mypackage.CourseSchedule;
+import mypackage.FirebaseClients;
 import mypackage.Lecture;
+import mypackage.Main;
 import mypackage.Professor;
 import mypackage.Room;
 
@@ -25,7 +31,7 @@ public class TestCases {
 	ArrayList<Lecture> lectureList;
 	ArrayList<Lecture> solvedLectureList;
 	CourseSchedule solvedCourseSchedule;
-	
+	private static Firestore db;	
 	
 	@Before
 	public void beforeStandardTests() {
@@ -132,22 +138,90 @@ public class TestCases {
 	}
 	
 	@Test
-	public void checkComplete() {
-		initiate(20, 3, 20);
-		assertTrue(solvedCourseSchedule.getScore().getHardScore() >= 0);
+	public void checkFirebase() {
+		while (db==null) {
+			try {
+				db = FirebaseClients.initFirebase();
+			} catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				System.out.println("Private key not found");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		assertTrue(true);
 	}
 	
-	public void initiate(int profNum, int courseNum, int roomNum) {
-		ArrayList<Professor> profList = createProfessors(profNum);
-		ArrayList<Course> courseList = createCourses(courseNum, profList);
-		lectureList = (ArrayList<Lecture>) generateLectures(courseList);
-		ArrayList<Room> roomList = createRooms(roomNum);
-		SolverFactory<CourseSchedule> solverFactory = SolverFactory.createFromXmlResource("SolverConfig.xml");
-		solver = solverFactory.buildSolver();
-		CourseSchedule unsolvedCourseSchedule = new CourseSchedule(lectureList, roomList, profList);
-		solvedCourseSchedule = solver.solve(unsolvedCourseSchedule);
-		solvedLectureList = (ArrayList<Lecture>) solvedCourseSchedule.getLectureList();
+	@Test
+	public void checkGenerateCourses() {
+		while (db==null) {
+			try {
+				db = FirebaseClients.initFirebase();
+			} catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				System.out.println("Private key not found");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		List<Course> courseList = Main.generateCourses(db);
+		assertTrue(true);
 	}
+	
+	@Test
+	public void checkGenerateRooms() {
+		while (db==null) {
+			try {
+				db = FirebaseClients.initFirebase();
+			} catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				System.out.println("Private key not found");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		List<Room> roomList = Main.generateRooms(db);
+		assertTrue(true);
+	}
+	
+	@Test
+	public void checkGenerateProfessors() {
+		while (db==null) {
+			try {
+				db = FirebaseClients.initFirebase();
+			} catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				System.out.println("Private key not found");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		List<Professor> profList = Main.generateProfessors(db);
+		assertTrue(true);
+	}
+	
+	@Test
+	public void checkGenerateLectures() {
+		while (db==null) {
+			try {
+				db = FirebaseClients.initFirebase();
+			} catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				System.out.println("Private key not found");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		List<Course> courseList = Main.generateCourses(db);
+		List<Lecture> lectureList = Main.generateLectures(courseList, db);	
+		assertTrue(true);
+	}
+		
 	
 	public void initiate(int profNum, int courseNum, int roomNum, long time) {
 		ArrayList<Professor> profList = createProfessors(profNum);

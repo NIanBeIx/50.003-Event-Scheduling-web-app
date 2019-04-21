@@ -13,8 +13,8 @@ public class Lecture {
 	private Professor professor;
 	private Course course;
 	
-	private String classNumber;
-	private String cohortNumber;
+	private String classNumber; // class per week
+	private String cohortNumber; // group of students
 	
 	public Lecture() {}
 

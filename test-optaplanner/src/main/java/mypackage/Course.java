@@ -9,8 +9,10 @@ public class Course {
 	private int numberOfClasses;
 	private List<Integer> classPeriodList;
 	private List<String> professorList;
+	private List<Integer> lectureIndexList;
+	private String pillarBatch;
 	
-	private Lecture[] lectureArray;
+//	private Lecture[] lectureArray;
 	
 	public Course() {}
 	
@@ -48,6 +50,10 @@ public class Course {
 		this.professorList = professorList;
 	}
 	
+	public void setLectureIndexList(List<Integer> lectureIndexList) {
+		this.lectureIndexList = lectureIndexList;
+	}
+	
 	public String getCourseId() {
 		return courseId;
 	}
@@ -72,11 +78,23 @@ public class Course {
 		return professorList;
 	}
 	
-	public void initLectureArray() {
-		this.lectureArray = new Lecture[numberOfCohorts * numberOfClasses];
+	public List<Integer> getLectureIndexList() {
+		return lectureIndexList;
 	}
 	
-	public Lecture[] getLectureArray() {
-		return lectureArray;
+	public String getPillarBatch() {
+		return pillarBatch;
 	}
+	
+	public void setPillarBatch(String pillarBatch) {
+		this.pillarBatch = pillarBatch;
+	}
+	
+//	public void initLectureArray() {
+//		this.lectureArray = new Lecture[numberOfCohorts * (numberOfClasses - lectureIndexList.size())];
+//	}
+//	
+//	public Lecture[] getLectureArray() {
+//		return lectureArray;
+//	}
 }

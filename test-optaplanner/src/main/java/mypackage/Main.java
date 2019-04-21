@@ -1,5 +1,7 @@
 package mypackage;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +12,24 @@ import java.util.concurrent.ExecutionException;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 
-import com.google.api.client.util.Sleeper;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
+
+import biweekly.Biweekly;
+import biweekly.ICalendar;
 
 public class Main {
 	private static Firestore db;
-	final static int NUMSCHEDULES = 3;
 	
 	public static void main(String[] args) {
 		
@@ -38,7 +44,6 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		
 		while (true) {
 			DocumentReference docRef = db.collection("algo").document("algoStatus");
 			ApiFuture<DocumentSnapshot> futureRead = docRef.get();
@@ -66,19 +71,24 @@ public class Main {
 	}
 	
 	private static void start() {
-		List<Course> courseList = generateCourses();
-		List<Room> roomList = generateRooms();
-		List<Professor> profList = generateProfessors();
-		List<Lecture> lectureList = generateLectures(courseList);		
+		List<Course> courseList = generateCourses(db);
+		List<Room> roomList = generateRooms(db);
+		List<Professor> profList = generateProfessors(db);
+		List<Lecture> lectureList = generateLectures(courseList, db);	
 		
 		SolverFactory<CourseSchedule> solverFactory = SolverFactory.createFromXmlResource("SolverConfig.xml");
 		Solver<CourseSchedule> solver = solverFactory.buildSolver();
 		CourseSchedule unsolvedCourseSchedule = new CourseSchedule(lectureList, roomList, profList);
-		CourseSchedule solvedCourseSchedule = solver.solve(unsolvedCourseSchedule);
-		System.out.println(solvedCourseSchedule.getScore());
+		CourseSchedule solvedCourseSchedule;
+		while (true) {
+			solvedCourseSchedule = solver.solve(unsolvedCourseSchedule);
+			System.out.println(solvedCourseSchedule.getScore());
+			System.out.println(solvedCourseSchedule.getScore().getHardScore());
+			if (solvedCourseSchedule.getScore().getHardScore() == 0)
+				break;
+		}
 		ArrayList<Lecture> solvedLectureList = (ArrayList<Lecture>) solvedCourseSchedule.getLectureList();
 		HashSet<Professor> solvedProfSet = new HashSet<Professor>(); 
-		
 		
 		for (Lecture lecture: solvedLectureList) {
 //			// Print stuff
@@ -107,16 +117,38 @@ public class Main {
 				e.printStackTrace();
 			}
 
-			
 			for (Lecture lecture: prof.getLectureList()) {
 				FirestoreLecture firestoreLecture = new FirestoreLecture(lecture);
 				ApiFuture<DocumentReference> newLectures = db.collection("instructors").document(prof.getInstructorName()).
 						  collection("lectures").add(firestoreLecture);
 			}
 		}
+		
+		for (Professor prof: solvedProfSet) {
+			CalManager calMan = new CalManager();
+			ICalendar ical = calMan.createCalendar(prof);
+			String fileName = "./" + prof.getInstructorName() + ".ics";
+			File file = new File(fileName);
+			try {
+				Biweekly.write(ical).go(file);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			Storage storage = StorageOptions.getDefaultInstance().getService();
+			BlobId blobId = BlobId.of("escproject", prof.getInstructorName());
+			BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("text/calendar").build();
+			FileInputStream input = null;
+			try {
+				input = new FileInputStream(fileName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Blob blob = storage.create(blobInfo, input);
+		}
 	}
 	
-	private static List<Course> generateCourses() {
+	public static List<Course> generateCourses(Firestore db) {
 		List<Course> courseList = new ArrayList<Course>();
 		//asynchronously retrieve all documents
 		ApiFuture<QuerySnapshot> future = db.collection("courses").get();
@@ -139,7 +171,7 @@ public class Main {
 		return null;
 	}
 	
-	private static List<Room> generateRooms() {
+	public static List<Room> generateRooms(Firestore db) {
 		List<Room> roomList = new ArrayList<Room>();
 		//asynchronously retrieve all documents
 		ApiFuture<QuerySnapshot> future = db.collection("rooms").get();
@@ -162,7 +194,7 @@ public class Main {
 		return null;
 	}
 	
-	private static List<Professor> generateProfessors() {
+	public static List<Professor> generateProfessors(Firestore db) {
 		List<Professor> professorList = new ArrayList<Professor>();
 		//asynchronously retrieve all documents
 				ApiFuture<QuerySnapshot> future = db.collection("instructors").get();
@@ -185,40 +217,30 @@ public class Main {
 		return null;
 	}
 	
-	private static List<Lecture> generateLectures(List<Course> courseList) {
+	public static List<Lecture> generateLectures(List<Course> courseList, Firestore db) {
 		List<Lecture> lectureList = new ArrayList<Lecture>();
 		for (Course course: courseList) {
-			course.initLectureArray();
+//			course.initLectureArray();
+			for (int lectureIndex: course.getLectureIndexList()) {
+				String tempLectureId = course.getCourseId() + "_-1_" + lectureIndex;
+				Lecture tempLec = new Lecture(tempLectureId, course.getClassPeriodList().get(lectureIndex), course);
+				tempLec.setClassNumber(String.valueOf(lectureIndex));
+				tempLec.setCohortNumber(String.valueOf(-1));
+				lectureList.add(tempLec);
+			}
 			for (int cohort = 0; cohort < course.getNumberOfCohorts(); cohort++) {
 				for (int numClass = 0; numClass < course.getNumberOfClasses(); numClass++) {
+					if (course.getLectureIndexList().contains(numClass))
+						continue;
 					String tempLectureId = course.getCourseId() + "_" + cohort + "_" + numClass;
 					Lecture tempLec = new Lecture(tempLectureId, course.getClassPeriodList().get(numClass), course);
 					tempLec.setClassNumber(String.valueOf(numClass));
 					tempLec.setCohortNumber(String.valueOf(cohort));
 					lectureList.add(tempLec);
-					course.getLectureArray()[cohort * numClass] = lectureList.get(lectureList.size()-1);
+//					course.getLectureArray()[cohort * numClass] = lectureList.get(lectureList.size()-1);
 				}
 			}
 		}
 		return lectureList;
-	}
-}
-
-class SolverThread extends Thread {
-	CourseSchedule unsolvedCourseSchedule;
-	CourseSchedule solvedCourseSchedule;
-	
-	public SolverThread(CourseSchedule unsolvedCourseSchedule) {
-		this.unsolvedCourseSchedule = unsolvedCourseSchedule;
-	}
-	
-	public void run() {
-		SolverFactory<CourseSchedule> solverFactory = SolverFactory.createFromXmlResource("SolverConfig.xml");
-		Solver<CourseSchedule> solver = solverFactory.buildSolver();
-		solvedCourseSchedule = solver.solve(unsolvedCourseSchedule);
-	}
-	
-	public CourseSchedule getSolvedCourseSchedule() {
-		return this.solvedCourseSchedule;
 	}
 }
