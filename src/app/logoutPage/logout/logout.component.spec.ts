@@ -16,7 +16,7 @@ import {MatSidenavModule,
     MatRadioModule} from '@angular/material';
 import { LogoutComponent } from './logout.component';
 
-describe('LogoutComponent', () => {
+xdescribe('LogoutComponent', () => {
   let component: LogoutComponent;
   let fixture: ComponentFixture<LogoutComponent>;
 

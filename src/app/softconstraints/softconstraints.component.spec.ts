@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatCardActions } from '@angular/material';
 import { SoftconstraintsComponent } from './softconstraints.component';
 
 describe('SoftconstraintsComponent', () => {
@@ -8,7 +8,7 @@ describe('SoftconstraintsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SoftconstraintsComponent ]
+      declarations: [ SoftconstraintsComponent, MatCardActions ]
     })
     .compileComponents();
   }));
@@ -19,7 +19,26 @@ describe('SoftconstraintsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render text in a h3 tag', () => {
+    const fixture = TestBed.createComponent(SoftconstraintsComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h3').textContent).toContain('Choose the periods when you would prefer not to have lessons.');
   });
+
+  it('should render text in a h5 tag', () => {
+    const fixture = TestBed.createComponent(SoftconstraintsComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h5').textContent).toContain('Monday:');
+  });
+
+  it('should render text in a label tag', () => {
+    const fixture = TestBed.createComponent(SoftconstraintsComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('label').textContent).toContain('0800-0830');
+  });
+
+  
 });
