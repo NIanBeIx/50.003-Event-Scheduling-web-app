@@ -165,10 +165,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         },1000);
 
 
-
-
-
-
       });
   } else {
   }

@@ -16,7 +16,7 @@ import { SoftconstraintsComponent } from './softconstraints/softconstraints.comp
 
 
 const routes: Routes = [
-  {path: '', component: WelcomeComponent},
+  {path: '', component: LoginComponent},
   {path: 'poll', component: PollComponent},
   {path: 'messages', component: MessagesComponent},
   {path: 'generateschedule', component: GeneratescheduleComponent},
