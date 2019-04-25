@@ -185,10 +185,4 @@ export class AppComponent {
               }
             });
           }
-
-
-        
-
-
-  
 }

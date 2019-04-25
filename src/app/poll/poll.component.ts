@@ -23,136 +23,28 @@ export class PollComponent implements OnInit{
   //elements: any=[];
   elements: any=[];
   
-  constructor( private route:ActivatedRoute) {
+  constructor( private route:ActivatedRoute) {}
+/*
+  async onClickDownload(){
+    const {Storage}=require('@google-cloud/storage');
+    const storage=new Storage();
+    const bucketName='escproject';
+    const destFilename='C:/Desktop/schedule.xl';
+    const srcFileName='schedule.xl';
 
+    const options={
+      destination:destFilename
+    };
 
-    /*
-    var insideelements=[];
-    console.log("initiates! "+insideelements.length);
-    firebase.firestore().collection('instructors').where('status','==',1).get().then(
-      sub=>{
-        var returnList=[];
-
-        sub.forEach(doc=>{
-          const datas=doc.data();
-          if(datas.type=="instructor"){
-            console.log("found active instructor  "+datas.instructorName);
-            returnList.push(datas.instructorName);
-            //return datas.instructorName;
-            //console.log(returnList.length+"  from inside");
-          }else{
-            console.log("error! course coordinator shouldn't be accessing this page!");
-          }
-        })
-        setTimeout(function(){
-          //console.log("from outside  "+returnList[0]); 
-          firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').get().then(
-            snapshot=>{
-              var rawList=[];
-              var count=0;
-              snapshot.forEach(doc=>{
-                const key=doc.id;
-                firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').doc(key).get().then(function(temp){
-                  const a=temp.data();
-                  insideelements.push(a);
-                  console.log("elements length "+insideelements.length);
-                  rawList.push(a);
-                  console.log(insideelements.length);
-                })
-              });
-              //get rawList: lectures for the current login instructor
-            });
-
-            setTimeout(function(){
-              console.log("outside length : "+insideelements.length);
-              this.tempelements=insideelements;
-              console.log("hhhhhhhhhhhhhhhhhhh "+this.tempelements.length);
-              
-              //$("#mytable").bootstrapTable('refresh',PollComponent.elements)
-          },2000);
-
-          //return returnList[0];
-        },1000);
-        
-        
-      });
-      */
-
+    await storage.bucketName(bucketName).file(srcFileName).download(options);
+    
   }
-
 
   
-
-/*
-/////////////////////////////////////////////////////////////////////////////////////////
-// return array of objects (lectures) for the instructor
-  firebaseGetLectures(instructorname:string){
-    var raw=firebase.firestore().collection('instructors').doc(instructorname).collection('lectures').get().then(
-      snapshot=>{
-        var rawList=[];
-        var count=0;
-        snapshot.forEach(doc=>{
-          const key=doc.id;
-          firebase.firestore().collection('instructors').doc(instructorname).collection('lectures').doc(key).get().then(function(temp){
-            const a=temp.data();
-            rawList.push(a);
-            console.log(a);
-          })
-        });
-
-        setTimeout(resp=>{console.log(rawList);
-        return rawList;},1000)
-        
-      });
-  }
+*/
 
 
-/////////////////////latest update
-  findName(){
-    firebase.firestore().collection('instructors').where('status','==',1).get().then(
-      sub=>{
-        var returnList=[];
 
-        sub.forEach(doc=>{
-          const datas=doc.data();
-          if(datas.type=="instructor"){
-            console.log("found active instructor  "+datas.instructorName);
-            returnList.push(datas.instructorName);
-            //return datas.instructorName;
-            console.log(returnList.length+"  from inside");
-          }else{
-            console.log("error! course coordinator shouldn't be accessing this page!");
-          }
-        })
-        setTimeout(function(){
-          console.log("from outside  "+returnList[0]); 
-          
-          firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').get().then(
-            snapshot=>{
-              var rawList=[];
-              var count=0;
-              snapshot.forEach(doc=>{
-                const key=doc.id;
-                firebase.firestore().collection('instructors').doc(returnList[0]).collection('lectures').doc(key).get().then(function(temp){
-                  const a=temp.data();
-                  rawList.push(a);
-                  console.log(a);
-                })
-              });
-              //get rawList: lectures for the current login instructor
-              setTimeout(resp=>{console.log(rawList);
-            },1000)
-              
-            });
-          //return returnList[0];
-        },1000);
-        
-        
-      });
-  }
-
-
-  */
 //return current login user name (check whether he/she is instructor)
  
   headElements = ['classNumber', 'cohortNumber', 'startTime','endTime','courseName','day','roomName','roomId'];
@@ -160,6 +52,8 @@ export class PollComponent implements OnInit{
 
   ngOnInit(){
     
+
+   // const {Storage} = require('@google-cloud/storage');
 
     this.route.queryParams.subscribe(
       
@@ -184,22 +78,6 @@ export class PollComponent implements OnInit{
     
 
 
-    /*
-    setTimeout(function(){
-      for (let i = 1; i <= 15; i++) {
-        this.elements.push({ classNumber: i, cohortNumber: 'User ' + i, startPeriod: 'Name ' + i, numberOfPeriods: i ,courseName:"courseName",day:i,roomId:i,roomName:"roomName"});
-      }
-    },5000);
-    */
-/*
-    setTimeout(function(){
-      for(var i=0;i<this.tempelements.length;i++){
-        this.elements.push(this.tempelements[i]);
-      }
-      console.log("gggggggggggggggggggggg "+this.elements.length);
-    },8000);
-
-    */
 
   }
 }

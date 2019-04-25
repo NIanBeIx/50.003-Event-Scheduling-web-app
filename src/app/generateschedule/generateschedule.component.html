@@ -49,24 +49,7 @@
         <input type="textarea" ngModel name="numberOfPeriod" required class="form-control" >
     </div>
 
-    <!-- new part below 
-
-    <h5>
-        Of the Lectures above, indicate the position of the shared lectures:
-    </h5>
-    <h6>
-        Put '0' if it is the first lecture, '1' if it is the second lecture and so on
-    </h6>
-    <h6>
-        eg: 0
-    </h6>
-
-    <div class="form-group">
-        <label for="textarea">Position of Shared Lecture</label>
-        <input type="textarea" ngModel name="positionOfSharedLecture" required class="form-control" >
-    </div>
-
--->
+    
 
 
     <h5>
@@ -81,4 +64,13 @@
     <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">ADD</button>
 
 </form>
-<button (click)="myMethod($event)">Click Event</button>
+<div id="added" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong> Added course information
+</div>
+<br>
+<button (click)="myMethod($event)" class="btn-block btn-primary">Generate Schedule</button>
+<div id="generating" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong> Schedule is generating
+</div>
