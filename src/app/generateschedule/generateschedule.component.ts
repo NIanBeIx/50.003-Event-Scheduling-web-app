@@ -31,6 +31,8 @@ export class GeneratescheduleComponent implements OnInit {
    console.log("AAA");
    firebase.firestore().collection('algo').doc("algoStatus").set({status:"generate"});
    console.log("BBB");
+   $('#generating').show();
+  setTimeout(function(){$('#generating').hide();},2000);
 }
   
 
@@ -110,6 +112,8 @@ export class GeneratescheduleComponent implements OnInit {
     
 
     firebase.firestore().collection('courses').doc(courseID).set(data);
+    $('#added').show();
+    setTimeout(function(){$('#added').hide();},2000);
     console.log("successfully updated database!");
   }
 

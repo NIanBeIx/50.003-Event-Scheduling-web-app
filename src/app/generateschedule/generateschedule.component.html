@@ -89,5 +89,13 @@
     <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">Submit</button>
 
 </form>
-    <button (click)="myMethod($event)" class="btn-block btn-primary">Generate Schedule</button>
-
+<div id="added" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong> Added course information
+</div>
+<br>
+<button (click)="myMethod($event)" class="btn-block btn-primary">Generate Schedule</button>
+<div id="generating" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong> Schedule is generating
+</div>
