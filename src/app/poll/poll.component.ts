@@ -76,8 +76,32 @@ export class PollComponent implements OnInit{
 
   }
   onClickDownload(){
-    var base="https://storage.googleapis.com/escproject/David%20Yau"
-      window.location.href=base;
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var email = user.email;
+        BeforeScheduleDisplayComponent.myEmail=email;
+        console.log("user login is: "+user.email);
+
+
+        firebase.firestore().collection('instructors').where('email','==',user.email).get().then(
+          sub=>{
+            var returnList=[];
+    
+            sub.forEach(doc=>{
+              const datas=doc.data();
+              const names=datas.instructorName;
+              var listname=names.split(' ');
+              if(listname.length>1){
+                var base="https://storage.googleapis.com/escproject/"+listname[0]+"%20"+listname[1];
+                window.location.href=base;
+              }
+              
+            });
+          });
+        }
+      });
+    
   }
 }
 

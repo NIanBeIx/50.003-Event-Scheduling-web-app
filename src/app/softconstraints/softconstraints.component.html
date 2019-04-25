@@ -523,9 +523,14 @@ Friday:
 <br>
 <br>
 <mat-card-actions>
-    <button mat-raised button (click)="sendSoftConstraints()" color="primary" ngModel name="send">Send</button>
+    <button mat-raised button (click)="sendSoftConstraints()" class="btn-block btn-primary" ngModel name="send">OK</button>
 </mat-card-actions>
 
+<br>
+<div id="sc" class="alert alert-success collapse">
+    <a herf="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Success!</strong>   Successfully added time preference! 
+  </div>
 
 
 

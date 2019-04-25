@@ -162,7 +162,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         setTimeout(function(){
           firebase.firestore().collection('instructors').doc(returnList[0]).update({softConstraints:periods});
-        },1000);
+          $('#sc').show();
+          setTimeout(function(){$('#sc').hide();},3000);
+        },500);
 
 
       });

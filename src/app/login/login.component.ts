@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     
     console.log("login successfully!");
     setTimeout(function(){
-      window.location.href = "";
+      window.location.href = "/welcome";
     },2000);
   }
 
