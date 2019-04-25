@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -36,7 +37,8 @@ describe('MessagesComponent', () => {
     MatDialogModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatRadioModule],
+    MatRadioModule,
+    BrowserAnimationsModule],
       declarations: [ MessagesComponent ], 
       providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
     })
@@ -52,4 +54,13 @@ describe('MessagesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render text in a mat-card-title tag', () => {
+    const fixture = TestBed.createComponent(MessagesComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('mat-card-title').textContent).toContain('Send Course Coordinator Message');
+  });
+
+  
 });

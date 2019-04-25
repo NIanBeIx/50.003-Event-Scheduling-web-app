@@ -16,6 +16,7 @@ import {MatSidenavModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     MatRadioModule} from '@angular/material';
+import { AuthService } from 'app/db-service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -38,7 +39,7 @@ describe('LoginComponent', () => {
     MatProgressSpinnerModule,
     MatRadioModule],
       declarations: [ LoginComponent ],
-      providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
+      providers: [AuthService, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
 
     })
     .compileComponents();
@@ -53,4 +54,27 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render text in a h4 tag', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h4').textContent).toContain(' Login to SUTD Scheduler Station');
+  });
+
+  it('should render text in a label tag', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('label').textContent).toContain('Email Address');
+  });
+
+  it('should render text in a strong tag', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('strong').textContent).toContain('Error!');
+  });
+
+
 });

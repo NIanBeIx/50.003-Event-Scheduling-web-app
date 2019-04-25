@@ -63,7 +63,7 @@ export class GeneratescheduleComponent implements OnInit {
 
   push(content:string){
         
-    firebase.firestore().collection('testinput').doc('2ndlayer').collection('3rdlayer').add({
+    firebase.firestore().collection('courses').doc('2ndlayer').collection('3rdlayer').add({
         title:'user registered',
         value:{first:'hellohello',second:2}
     }
@@ -77,6 +77,8 @@ export class GeneratescheduleComponent implements OnInit {
     const instructors=form.value.instructorList;
     const periods=form.value.numberOfPeriod;
     const numberOfClass=form.value.numberOfCohort;
+    const pillar=form.value.pillar;
+    const lectures=form.value.lectureIndex;
     // const positionOfSharedLecture=form.value.positionOfSharedLecture
 
     var instructorArray=instructors.split(",");
@@ -87,20 +89,29 @@ export class GeneratescheduleComponent implements OnInit {
       integerPeriod[i]=parseInt(periodArray[i]);
     }
 
+
+    var lecturea=lectures.split(",");
+    var intLecture=new Array(lecturea.length);
+    for(var i=0;i<lecturea.length;i++){
+      intLecture[i]=parseInt(lecturea[i]);
+    }
+
     var data={
       classPeriodList:integerPeriod,
       courseName:courseName,
       numberOfCohorts:numberOfClass,
       numberOfClasses:periodArray.length,
-      profList:instructorArray,
-      courseId:courseID
+      professorList:instructorArray,
+      courseId:courseID,
+      pillarBatch:pillar,
+      lectureIndexList:intLecture
     }
 
 
 
     
 
-    firebase.firestore().collection('testinput').doc(courseID).set(data);
+    firebase.firestore().collection('courses').doc(courseID).set(data);
     $('#added').show();
     setTimeout(function(){$('#added').hide();},2000);
     console.log("successfully updated database!");

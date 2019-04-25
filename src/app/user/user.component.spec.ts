@@ -52,4 +52,11 @@ describe('UserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render text in a p tag', () => {
+    const fixture = TestBed.createComponent(UserComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('p').textContent).toContain('user works!');
+  });
 });

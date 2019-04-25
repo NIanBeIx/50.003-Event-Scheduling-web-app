@@ -42,12 +42,12 @@
                   <div fxLayout="row" fxLayoutAlign="center center" class="content">
                     <i class="fas fa-lock prefix white-text"></i>
 
-                    <mat-radio-button value="instructor">Instructor</mat-radio-button>
-                    <mat-radio-button value="cc">Course Coordinator</mat-radio-button>
+                    <mat-radio-button ngModel name="instructor" value="instructor">Instructor</mat-radio-button>
+                    <mat-radio-button ngModel name="coordinator" value="cc">Course Coordinator</mat-radio-button>
                   </div>
               </mat-radio-group>
           
-            <button type="submit" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
+            <button type="submit" ngModel name="signup" [disabled]="!signupForm.valid" class="btn-block btn-primary">SIGN UP</button>
           
             </form>
           
@@ -58,7 +58,7 @@
           
             <div id="registerFailAlert" class="alert alert-warning collapse">
               <a herf="#" class="close" data-dismiss="alert">&times;</a>
-              <strong>Error!</strong>   Email already in used! Please Login
+              <strong ngModel name="error">Error!</strong>   Email already in used! Please Login
             </div>
           
             <div id="connectionAlert" class="alert alert-warning collapse">

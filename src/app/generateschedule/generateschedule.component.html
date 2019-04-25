@@ -12,6 +12,23 @@
         <input type="text" ngModel name="courseId" required class="form-control" >
     </div>
 
+
+<h5>
+        Pillar and batch
+    </h5>
+
+    <div class="form-group">
+        <label for="textarea">Pillar</label>
+        <input type="text" ngModel name="pillar" required class="form-control" >
+    </div>
+
+
+
+
+
+
+
+
     <h5>
         Insert the Course Name to be Generated.
     </h5>
@@ -49,7 +66,15 @@
         <input type="textarea" ngModel name="numberOfPeriod" required class="form-control" >
     </div>
 
-    
+    <h6>
+        Input the session that you wish to be lectures
+    </h6>
+
+<div class="form-group">
+        <label for="textarea">Lecture index list</label>
+        <input type="textarea" ngModel name="lectureIndex" required class="form-control" >
+    </div>
+   
 
 
     <h5>
@@ -61,7 +86,7 @@
     </div>
 
 
-    <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">ADD</button>
+    <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">Submit</button>
 
 </form>
 <div id="added" class="alert alert-success collapse">

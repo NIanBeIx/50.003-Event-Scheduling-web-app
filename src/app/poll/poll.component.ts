@@ -74,11 +74,10 @@ export class PollComponent implements OnInit{
 
 
 
-
-    
-
-
-
+  }
+  onClickDownload(){
+    var base="https://storage.googleapis.com/escproject/David%20Yau"
+      window.location.href=base;
   }
 }
 
