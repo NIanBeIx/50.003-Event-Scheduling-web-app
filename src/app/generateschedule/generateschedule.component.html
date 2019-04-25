@@ -12,6 +12,23 @@
         <input type="text" ngModel name="courseId" required class="form-control" >
     </div>
 
+
+<h5>
+        Pillar and batch
+    </h5>
+
+    <div class="form-group">
+        <label for="textarea">Pillar</label>
+        <input type="text" ngModel name="pillar" required class="form-control" >
+    </div>
+
+
+
+
+
+
+
+
     <h5>
         Insert the Course Name to be Generated.
     </h5>
@@ -49,24 +66,15 @@
         <input type="textarea" ngModel name="numberOfPeriod" required class="form-control" >
     </div>
 
-    <!-- new part below 
-
-    <h5>
-        Of the Lectures above, indicate the position of the shared lectures:
-    </h5>
     <h6>
-        Put '0' if it is the first lecture, '1' if it is the second lecture and so on
-    </h6>
-    <h6>
-        eg: 0
+        Input the session that you wish to be lectures
     </h6>
 
-    <div class="form-group">
-        <label for="textarea">Position of Shared Lecture</label>
-        <input type="textarea" ngModel name="positionOfSharedLecture" required class="form-control" >
+<div class="form-group">
+        <label for="textarea">Lecture index list</label>
+        <input type="textarea" ngModel name="lectureIndex" required class="form-control" >
     </div>
-
--->
+   
 
 
     <h5>
@@ -78,7 +86,8 @@
     </div>
 
 
-    <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">ADD</button>
+    <button type="submit" [disabled]="!courseForm.form.valid" class="btn-block btn-primary">Submit</button>
 
 </form>
-<button (click)="myMethod($event)">Click Event</button>
+    <button (click)="myMethod($event)" class="btn-block btn-primary">Generate Schedule</button>
+
