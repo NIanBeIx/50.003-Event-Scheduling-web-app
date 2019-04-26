@@ -93,7 +93,11 @@ export class PollComponent implements OnInit{
               const names=datas.instructorName;
               var listname=names.split(' ');
               if(listname.length>1){
+                
                 var base="https://storage.googleapis.com/escproject/"+listname[0]+"%20"+listname[1];
+                window.location.href=base;
+              }else{
+                var base="https://storage.googleapis.com/escproject/"+listname[0];
                 window.location.href=base;
               }
               
