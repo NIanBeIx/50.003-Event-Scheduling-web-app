@@ -136,6 +136,12 @@ public class TestCases {
 		initiate(1, 20, 1, (long) 0.05);
 		assertTrue(solvedCourseSchedule.getScore().getHardScore() < 0);
 	}
+
+	@Test
+	public void checkLargeTest() {
+		initiate(30, 40, 40, (long) 20.0);
+		assertTrue(solvedCourseSchedule.getScore().getHardScore() < 0);
+	}
 	
 	@Test
 	public void checkFirebase() {
