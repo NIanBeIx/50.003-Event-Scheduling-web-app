@@ -12,11 +12,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SystemTesting1 {
+public class SystemTesting2 {
 	static String myName = "Edric";
-	static String myEmail = "edricyc@mymail.sutd.edu.sg";
+	static String myEmail = "edricba@mymail.sutd.edu.sg";
 	static String myPassword = "SUTD@Singapore";
-	static String myType = "instructor";
+	static String myType = "coordinator";
 	static String[] Days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 	static int softconstraintsnum = 5;
 	
@@ -25,8 +25,8 @@ public class SystemTesting1 {
 		System.setProperty("webdriver.gecko.driver","C:\\Users\\edric\\Desktop\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		
-		//driver.get("http://localhost:4200/signup");
-		driver.get("http://10.12.23.219:4200/signup");
+		driver.get("http://localhost:4200/signup");
+		//driver.get("http://10.12.23.219:4200/login");
 		
 		// get the user email and password field of the login page
 		WebElement name = driver.findElement(By.name("name"));
@@ -35,8 +35,6 @@ public class SystemTesting1 {
 		WebElement type = driver.findElement(By.name(myType));
 		
 		// send my email and password to fill in the fields
-		System.out.println(myName);
-		Thread.sleep(100);
 		name.sendKeys(myName);
 		email.sendKeys(myEmail);
 		password.sendKeys(myPassword);
@@ -101,28 +99,7 @@ public class SystemTesting1 {
 		WebElement login = driver.findElement(By.name("login"));
 		login.click();
 		
-		try {	
-			System.out.println(1);	
-			WebElement softconbutton = driver.findElement(By.name("softconstraints"));
-			softconbutton.click();
-			
-			wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("MondayPeriod1")));
-			
-			Random rand = new Random();
-			int num = rand.nextInt(softconstraintsnum);
-			for (int i = 0; i < num; i++) {
-				int value = rand.nextInt(24) + 1;
-				int day = rand.nextInt(5);
-				String softconstraintsid = Days[day] + "Period" + Integer.toString(value);
-				System.out.println(softconstraintsid);
-				WebElement softcon = driver.findElement(By.id(softconstraintsid));
-				softcon.click();
-			}
-			
-			WebElement send = driver.findElement(By.name("send"));
-			send.click();
-			
+		try {
 			WebElement viewschedbutton = driver.findElement(By.name("viewschedule"));
 			viewschedbutton.click();
 			
